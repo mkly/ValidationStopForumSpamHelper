@@ -56,7 +56,6 @@ class ValidationStopForumSpamHelper {
 		$this->score = $this->response->username->appears +
 			$this->response->email->apprears +
 			$this->response->ip->appears;
-		var_dump($this->score);
 	}
 
 	protected function is_spam() {
