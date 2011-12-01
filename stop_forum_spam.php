@@ -24,7 +24,7 @@ class ValidationStopForumSpamHelper {
 		}
 	
 		$this->getResponse();
-		$this->addResponse();
+		$this->scoreResponse();
 		if($this->is_spam()) {
 			return false;
 		} else {
@@ -52,7 +52,7 @@ class ValidationStopForumSpamHelper {
 		$this->response = json_decode($json_response);
 	}
 
-	protected function addResponse() {
+	protected function scoreResponse() {
 		$this->score = $this->response->username->appears +
 			$this->response->email->apprears +
 			$this->response->ip->appears;
