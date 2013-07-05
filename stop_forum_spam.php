@@ -1,17 +1,18 @@
 <?php
-
 defined('C5_EXECUTE') or die('Access Denied.');
 
-define('STOP_FORUM_SPAM_URL', 'http://stopforumspam.com/api');
+if (!defined('STOP_FORUM_SPAM_URL')) {
+	define('STOP_FORUM_SPAM_URL', 'http://stopforumspam.com/api');
+}
 
 class ValidationStopForumSpamHelper {
 
 	protected $response;
-	protected $score = 0;
+	protected $score     = 0;
 	protected $min_score = 0;
-	protected $username = '';
-	protected $ip = '';
-	protected $email = '';
+	protected $username  = '';
+	protected $ip        = '';
+	protected $email     = '';
 
 	public function check($username = false, $email = false, $ip = false, $min_score = false) {
 		if($username) $this->username = $username;
@@ -25,7 +26,8 @@ class ValidationStopForumSpamHelper {
 	
 		$this->getResponse();
 		$this->scoreResponse();
-		if($this->is_spam()) {
+		$this->reset();
+		if($this->isSpam()) {
 			return false;
 		} else {
 			return true;
@@ -58,10 +60,17 @@ class ValidationStopForumSpamHelper {
 			$this->response->ip->appears;
 	}
 
-	protected function is_spam() {
+	protected function isSpam() {
 		return ($this->score >= $this->min_score ? true : false);
 	}
 
-}
+	protected function reset() {
+		$response  = null;
+		$score     = 0;
+		$min_score = 0;
+		$username  = '';
+		$ip        = '';
+		$email     = '';
+	}
 
-?>
+}
