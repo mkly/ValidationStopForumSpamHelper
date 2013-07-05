@@ -1,4 +1,13 @@
 <?php
+/**
+* Stop Forum Spam Helper
+* A concrete5 Helper to check against stopforumspam.com db
+*
+* @author Mike Lay
+* @copyright 2013 Mike Lay
+* @link http://github.com/mkly/ValidationStopForumSpamHelper
+* @license MIT
+*/
 defined('C5_EXECUTE') or die('Access Denied.');
 
 if (!defined('STOP_FORUM_SPAM_URL')) {
